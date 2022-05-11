@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import PokemonThumb from "./components/PokemonThumb";
+import { SearchPokemon } from "./components/SearchPokemon";
 
 function App() {
 
   const [allPokemons, setAllPokemons] = useState([])
   const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+
   const getAllPokemons = async () => {
     //In this part we get all pokemons from the API, the URL
     const res = await fetch(loadMore)
     //await works to wait a moment. It waits next called
     const data = await res.json()
 
-    console.log(allPokemons.length)
-    console.log(data.length)
+    // console.log(allPokemons.length)
+    // console.log(data.length)
     setLoadMore(data.next)
 
     function createPokemonObject(result){
@@ -30,14 +32,26 @@ function App() {
     //console.log(allPokemons)
   }
   //this will be execute when a variable in the array change
-  
   useEffect(() => {
     getAllPokemons()
   }, [])
 
-  return (
+  // const [searchValue, setSearchValue] = React.useState('');
+  // let pokemonsInfo = []
+  // allPokemons.map((pokemon, index) => {
+  //   pokemonsInfo = [
+  //     {id: index, name: pokemon.name}
+  //   ]
+  // })
+  // console.log(pokemonsInfo.name)
+
+  return [
+    <h1 className="title-container">Pokemon Evolution</h1>,
+    <SearchPokemon
+        namePokemon = "Hola"
+    >
+    </SearchPokemon>,
     <div className="app-container">
-      <h1>Pokemon Evolution</h1>
       <div className="pokemon-container">
         <div className="all-container">
           {allPokemons.map( (pokemonStats, index) => 
@@ -52,7 +66,7 @@ function App() {
           <button className="load-more" onClick={() => getAllPokemons()}>Load more</button>
       </div>
     </div>
-  );
+  ];
 }
 
 export default App;
