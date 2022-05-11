@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Result
+
+At the moment this is the result of the page:
+
+![Result of the Pokedex](./assets/result-pokedex.png "Result of the Pokedex")
+
 ## Available Scripts
 
 In the project directory, you can run:
