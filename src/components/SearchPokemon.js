@@ -1,15 +1,16 @@
 import React from 'react';
 import '../styles/SearchPokemon.css';
 
-function SearchPokemon({namePokemon}) {
-    // const onSearchValueChange = (event) => {
-    //   setSearchValue(event.target.value);
-    // };
-    //console.log({namePokemon});
+function SearchPokemon({setSearchPokemons}) {
+    const onSearchPokemons = (event) => {
+      setSearchPokemons(event.target.value);
+    };
+
     return (
       <input 
-        className="TodoSearch"
+        className = "TodoSearch"
         placeholder="Search Pokemon"
+        onChange={onSearchPokemons}
       />
     );
   }

@@ -5,7 +5,8 @@ import { SearchPokemon } from "./components/SearchPokemon";
 function App() {
 
   const [allPokemons, setAllPokemons] = useState([])
-  const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+  const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=50')
+  const [searchPokemons, setSearchPokemons] = useState([])
 
   const getAllPokemons = async () => {
     //In this part we get all pokemons from the API, the URL
@@ -13,8 +14,6 @@ function App() {
     //await works to wait a moment. It waits next called
     const data = await res.json()
 
-    // console.log(allPokemons.length)
-    // console.log(data.length)
     setLoadMore(data.next)
 
     function createPokemonObject(result){
@@ -27,34 +26,34 @@ function App() {
         await allPokemons.sort((a, b) => a.id - b.id)
       })
     }
-    //console.log(data)
     createPokemonObject(data.results)
-    //console.log(allPokemons)
+    console.log(allPokemons)
   }
   //this will be execute when a variable in the array change
   useEffect(() => {
     getAllPokemons()
   }, [])
 
-  // const [searchValue, setSearchValue] = React.useState('');
-  // let pokemonsInfo = []
-  // allPokemons.map((pokemon, index) => {
-  //   pokemonsInfo = [
-  //     {id: index, name: pokemon.name}
-  //   ]
-  // })
-  // console.log(pokemonsInfo.name)
+  let searchedPokemons = [];
+  //This is a condition to filter pokemons in the search box
+  if (!searchPokemons.length >= 1){
+      searchedPokemons = allPokemons;
+  }else{
+
+    const searchText = searchPokemons.toLowerCase();
+    searchedPokemons = allPokemons.filter(function(pokemon){
+      return pokemon.name.includes(searchText)
+    })
+    //console.log(searchedPokemons)
+  }
 
   return [
     <h1 className="title-container">Pokemon Evolution</h1>,
-    <SearchPokemon
-        namePokemon = "Hola"
-    >
-    </SearchPokemon>,
+    <SearchPokemon setSearchPokemons={setSearchPokemons}/>,
     <div className="app-container">
       <div className="pokemon-container">
         <div className="all-container">
-          {allPokemons.map( (pokemonStats, index) => 
+          {searchedPokemons.map( (pokemonStats, index) => 
             <PokemonThumb
               key={index}
               id={pokemonStats.id}
