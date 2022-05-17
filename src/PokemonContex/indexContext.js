@@ -7,6 +7,11 @@ function PokemonProvider (props){
     const [allPokemons, setAllPokemons] = useState([]);
     const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=50');
     const [searchPokemons, setSearchPokemons] = useState([]);
+    const [openInfo, setOpenInfo] = useState(false);
+
+    const onClickButtonOpenInfo = () => {
+        setOpenInfo(!openInfo);
+    }
 
     const getAllPokemons = async () => {
         //In this part we get all pokemons from the API, the URL
@@ -53,6 +58,8 @@ function PokemonProvider (props){
             setSearchPokemons,
             searchedPokemons,
             getAllPokemons,
+            onClickButtonOpenInfo,
+            openInfo,
             allPokemons,
             setAllPokemons,
             loadMore,
