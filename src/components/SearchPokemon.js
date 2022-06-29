@@ -8,7 +8,7 @@ function SearchPokemon({setSearchPokemons}) {
 
     return (
       <input 
-        className = "TodoSearch"
+        className = "PokemonSearch"
         placeholder="Search Pokemon"
         onChange={onSearchPokemons}
       />

@@ -60,6 +60,7 @@ function PokemonProvider (props){
             getAllPokemons,
             onClickButtonOpenInfo,
             openInfo,
+            setOpenInfo,
             allPokemons,
             setAllPokemons,
             loadMore,

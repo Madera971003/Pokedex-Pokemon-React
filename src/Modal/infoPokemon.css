@@ -1,5 +1,5 @@
 .BackGroundPokemon {
-    background: rgba(178, 186, 202, 0.033);
+    background: rgba(136, 141, 150, 0.753);
     position: fixed;
     top: -10px;
     left: -10px;
@@ -10,3 +10,11 @@
     align-items: center;
     color: white;
 }
+.pokemon-modal-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 3rem 0.5rem;
+  }
