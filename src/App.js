@@ -11,14 +11,16 @@ function App() {
     setSearchPokemons,
     searchedPokemons,
     getAllPokemons,
+    openInfo,
+    setOpenInfo,
   } = React.useContext(PokemonContext);
-  const [open, setOpen] = React.useState(false);
   const [pokemonInformation, setPokemonInformation] = React.useState({});
 
   const handleClick = (pokemonStats) => {
-    setOpen(true);
+    setOpenInfo(true);
     setPokemonInformation(pokemonStats)
   };
+  console.table(searchedPokemons)
   return (
     <React.Fragment>
       <h1 className="title-container">Pokemon Evolution</h1>
@@ -45,7 +47,7 @@ function App() {
         </div>
         <button className="load-more" onClick={() => getAllPokemons()}>Load more</button>
       </div>
-      {open && <InfoPokemon pokemonInformation={pokemonInformation}/>}
+      {openInfo && <InfoPokemon pokemonInformation={pokemonInformation}/>}
     </React.Fragment>
   );
 }

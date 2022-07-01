@@ -2,16 +2,16 @@ import React from 'react'
 
 export default function PokemonInfo({id, name, image, type}) {
   //this is for the styles depending the pokemon type
-  const style = type + " thumb-container";
+  const style = type + " info-container";
   return (
     <div className={style}>
         <div className='number'>
-            <small>#0{id}</small>
+            <small className='text-pokemon-info'>#0{id}</small>
         </div>
         <img src={image} alt={name}/>
         <div className='detail-wrapper'>
-            <h3>{name}</h3>
-            <small>Type: {type}</small>
+            <h3 className='text-pokemon-info'>{name}</h3>
+            <small className='text-pokemon-info'>Type: {type}</small>
         </div>
     </div>
   )
