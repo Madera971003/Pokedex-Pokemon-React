@@ -1,26 +1,32 @@
-import React from "react";
-import { PokemonContext } from "./PokemonContex/indexContext";
+import React, { useState } from "react";
+import { usePokemons } from "./Hooks/usePokemons";
 import PokemonThumb from "./components/PokemonThumb";
 import { SearchPokemon } from "./components/SearchPokemon";
 import { InfoPokemon } from "./Modal/infoPokemon";
-import { PokemonButton } from "./components/PokemonButton";
-
+import { getAbilities } from "./api/AbilitiesAPI";
 
 function App() {
   const {
     setSearchPokemons,
     searchedPokemons,
     getAllPokemons,
-    openInfo,
-    setOpenInfo,
-  } = React.useContext(PokemonContext);
-  const [pokemonInformation, setPokemonInformation] = React.useState({});
+  } = usePokemons();
+  const [openInfo, setOpenInfo] = useState(false);
+  const [pokemonInformation, setPokemonInformation] = useState({});
+  const [abilities, setAbilities] = useState([]);
 
   const handleClick = (pokemonStats) => {
+    setAbilities([])
     setOpenInfo(true);
     setPokemonInformation(pokemonStats)
+    pokemonStats.abilities.map((ability) => {
+      getAbilities(ability.ability.url)
+        .then( ability => {
+          setAbilities(prevAbilities => prevAbilities.concat(ability))
+        })
+    })
   };
-  console.table(searchedPokemons)
+  console.log('abilities', abilities)
   return (
     <React.Fragment>
       <h1 className="title-container">Pokemon Evolution</h1>
@@ -31,15 +37,13 @@ function App() {
             {searchedPokemons.map( (pokemonStats, index) =>
               <div className="item" key={index}>
                 <div onClick={() => handleClick(pokemonStats)}>
-                  <PokemonButton>
-                    <PokemonThumb
-                      key={index}
-                      id={pokemonStats.id}
-                      image={pokemonStats.sprites.other.dream_world.front_default}
-                      name={pokemonStats.name}
-                      type={pokemonStats.types[0].type.name}
-                    />
-                  </PokemonButton>
+                  <PokemonThumb
+                    key={pokemonStats.id}
+                    id={pokemonStats.id}
+                    image={pokemonStats.sprites.other.dream_world.front_default}
+                    name={pokemonStats.name}
+                    type={pokemonStats.types[0].type.name}
+                  />
                 </div>
               </div>
               )}
@@ -47,7 +51,7 @@ function App() {
         </div>
         <button className="load-more" onClick={() => getAllPokemons()}>Load more</button>
       </div>
-      {openInfo && <InfoPokemon pokemonInformation={pokemonInformation}/>}
+      {openInfo && <InfoPokemon pokemonInformation={pokemonInformation} setOpenInfo={setOpenInfo}/>}
     </React.Fragment>
   );
 }

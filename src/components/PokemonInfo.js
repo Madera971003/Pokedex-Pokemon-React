@@ -1,8 +1,9 @@
 import React from 'react'
 
 export default function PokemonInfo({id, name, image, type}) {
-  //this is for the styles depending the pokemon type
-  const style = type + " info-container";
+  let style;
+  type ? style = type + " info-container" : style = "normal";
+
   return (
     <div className={style}>
         <div className='number'>

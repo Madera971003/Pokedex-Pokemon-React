@@ -24,7 +24,6 @@
   color: black;
 }
 .info-container {
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,4 +57,17 @@
   border-radius: 1rem;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.9);
   border: 1px solid #044007;
+}
+.button-close-info {
+  background: none;
+  border-color: #0000003c;
+  border-radius: 0.5rem;
+  float: right;
+  height: 50px;
+  width: 40px;
+  color: red;
+}
+.button-close-info:hover {
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
