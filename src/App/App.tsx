@@ -1,9 +1,10 @@
 import React from "react";
-import { PokemonContext } from "./PokemonContex/indexContext";
-import PokemonThumb from "./components/PokemonThumb";
-import { SearchPokemon } from "./components/SearchPokemon";
-import { InfoPokemon } from "./Modal/infoPokemon";
-import { PokemonButton } from "./components/PokemonButton";
+import PokemonThumb from "../components/PokemonThumb";
+import { SearchPokemon } from "../components/SearchPokemon";
+import { InfoPokemon } from "../Modal/infoPokemon";
+import { PokemonButton } from "../components/PokemonButton";
+import { PokemonStats } from "../types/types";
+import { usePokemonContext } from "../PokemonContex/usePokemonContext";
 
 
 function App() {
@@ -13,14 +14,30 @@ function App() {
     getAllPokemons,
     openInfo,
     setOpenInfo,
-  } = React.useContext(PokemonContext);
-  const [pokemonInformation, setPokemonInformation] = React.useState({});
+  } = usePokemonContext();
+  const [pokemonInformation, setPokemonInformation] = React.useState<PokemonStats>({
+    id: null,
+    sprites: {
+      other: {
+        dream_world: {
+          front_default: ""
+        }
+      }
+    },
+    name: "",
+    types: [
+      {
+        type: {
+          name: ""
+        }
+      }
+    ],
+  });
 
-  const handleClick = (pokemonStats) => {
+  const handleClick = (pokemonStats: PokemonStats) => {
     setOpenInfo(true);
     setPokemonInformation(pokemonStats)
   };
-  console.table(searchedPokemons)
   return (
     <React.Fragment>
       <h1 className="title-container">Pokemon Evolution</h1>
@@ -28,7 +45,7 @@ function App() {
       <div className="app-container">
         <div className="pokemon-container">
           <div className="all-container">
-            {searchedPokemons.map( (pokemonStats, index) =>
+            {searchedPokemons.map( (pokemonStats: PokemonStats, index: number) =>
               <div className="item" key={index}>
                 <div onClick={() => handleClick(pokemonStats)}>
                   <PokemonButton>

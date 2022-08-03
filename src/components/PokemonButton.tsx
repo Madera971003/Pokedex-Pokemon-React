@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PokemonButton(props) {
+function PokemonButton(props: { children: React.ReactElement<any, string>; }) {
   return (
     <React.Fragment >
         <button className = "button-info-pokemon">
