@@ -4,13 +4,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.2.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.27.2",
-=======
->>>>>>> M-Context
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
@@ -41,10 +34,6 @@
     ]
   },
   "devDependencies": {
-<<<<<<< HEAD
-    "gh-pages": "^4.0.0"
-  }
-=======
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
@@ -54,7 +43,5 @@
     "@babel/preset-flow": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "babel-loader": "^8.2.5"
-  },
-  "homepage": "https://Madera971003.github.io/Pokedex-Pokemon-React"
->>>>>>> M-Context
+  }
 }
