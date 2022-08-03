@@ -1,6 +1,7 @@
 import React from 'react'
+import { PokemonThumbType } from '../types/types';
 
-export default function PokemonThumb({id, name, image, type}) {
+export default function PokemonThumb({id, name, image, type}: PokemonThumbType) {
   //this is for the styles depending the pokemon type
   const style = type + " thumb-container";
   return (

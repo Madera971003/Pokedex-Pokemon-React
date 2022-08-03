@@ -1,9 +1,9 @@
 import React from 'react'
+import { PokemonThumbType } from '../types/types';
 
-export default function PokemonInfo({id, name, image, type}) {
-  let style;
-  type ? style = type + " info-container" : style = "normal";
-
+export default function PokemonInfo({id, name, image, type}: PokemonThumbType) {
+  //this is for the styles depending the pokemon type
+  const style = type + " info-container";
   return (
     <div className={style}>
         <div className='number'>

@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PokemonInfo from "../components/PokemonInfo";
+import { usePokemonContext } from "../PokemonContex/usePokemonContext";
 import '../styles/infoPokemon.css'
+import { PokemonStats } from "../types/types";
 
-function InfoPokemon({ pokemonInformation, setOpenInfo }){
-    const handleClick = () => setOpenInfo(false);
+function InfoPokemon({ pokemonInformation }: {pokemonInformation: PokemonStats}){
+    const {openInfo, setOpenInfo} = usePokemonContext();
+    const handleClick = () => setOpenInfo(!openInfo);
     
     return ReactDOM.createPortal(
         <div className="BackGroundPokemon" onClick={handleClick}>
@@ -38,7 +41,7 @@ function InfoPokemon({ pokemonInformation, setOpenInfo }){
             </div>
            </div>
         </div>,
-        document.getElementById('modalPokemon')
+        document.getElementById('modalPokemon')! // "!" this simbol is to say to TypeScript that I am sure that It is never null
     );
 }
 

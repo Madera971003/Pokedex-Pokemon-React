@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import '../styles/SearchPokemon.css';
 
-function SearchPokemon({setSearchPokemons}) {
-    const onSearchPokemons = (event) => {
+function SearchPokemon({setSearchPokemons}: {setSearchPokemons: Dispatch<SetStateAction<string>>}) {
+    const onSearchPokemons = (event: { target: { value: React.SetStateAction<string>; }; }) => {
       setSearchPokemons(event.target.value);
     };
 
