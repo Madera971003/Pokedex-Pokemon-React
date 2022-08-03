@@ -2,9 +2,8 @@ import React from "react";
 import PokemonThumb from "../components/PokemonThumb";
 import { SearchPokemon } from "../components/SearchPokemon";
 import { InfoPokemon } from "../Modal/infoPokemon";
-import { PokemonButton } from "../components/PokemonButton";
 import { PokemonStats } from "../types/types";
-import { usePokemonContext } from "../PokemonContex/usePokemonContext";
+import { usePokemonLogic } from "../Hooks/usePokemonLogic";
 
 
 function App() {
@@ -14,7 +13,7 @@ function App() {
     getAllPokemons,
     openInfo,
     setOpenInfo,
-  } = usePokemonContext();
+  } = usePokemonLogic();
   const [pokemonInformation, setPokemonInformation] = React.useState<PokemonStats>({
     id: null,
     sprites: {

@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PokemonInfo from "../components/PokemonInfo";
-import { usePokemonContext } from "../PokemonContex/usePokemonContext";
+import { usePokemonLogic } from "../Hooks/usePokemonLogic";
 import '../styles/infoPokemon.css'
 import { PokemonStats } from "../types/types";
 
 function InfoPokemon({ pokemonInformation }: {pokemonInformation: PokemonStats}){
-    const {openInfo, setOpenInfo} = usePokemonContext();
+    const {openInfo, setOpenInfo} = usePokemonLogic();
     const handleClick = () => setOpenInfo(!openInfo);
     
     return ReactDOM.createPortal(

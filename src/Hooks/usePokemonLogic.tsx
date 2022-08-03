@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { PokemonBasicData, PokemonContextType, PokemonData, Results } from '../types/types'
 
-export function usePokemonContext(): PokemonContextType {
+export function usePokemonLogic(): PokemonContextType {
 
     const [allPokemons, setAllPokemons] = useState<PokemonData[]>([]);
     const [loadMore, setLoadMore] = useState<string>('https://pokeapi.co/api/v2/pokemon?limit=20');
