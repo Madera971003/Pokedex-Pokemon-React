@@ -4,13 +4,8 @@ import { PokemonBasicData, PokemonContextType, PokemonData, Results } from '../t
 export function usePokemonLogic(): PokemonContextType {
 
     const [allPokemons, setAllPokemons] = useState<PokemonData[]>([]);
-    const [loadMore, setLoadMore] = useState<string>('https://pokeapi.co/api/v2/pokemon?limit=20');
+    const [loadMore, setLoadMore] = useState<string>('https://pokeapi.co/api/v2/pokemon?limit=30');
     const [searchPokemons, setSearchPokemons] = useState<string>("");
-    const [openInfo, setOpenInfo] = useState<boolean>(false);
-
-    const onClickButtonOpenInfo = () => {
-        setOpenInfo(!openInfo);
-    }
 
     const getAllPokemons = async () => {
         //In this part we get all pokemons from the API, the URL
@@ -54,9 +49,6 @@ export function usePokemonLogic(): PokemonContextType {
         setSearchPokemons,
         searchedPokemons,
         getAllPokemons,
-        onClickButtonOpenInfo,
-        openInfo,
-        setOpenInfo,
         allPokemons,
         setAllPokemons,
         loadMore,

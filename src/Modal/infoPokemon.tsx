@@ -1,18 +1,18 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import ReactDOM from "react-dom";
 import PokemonInfo from "../components/PokemonInfo";
-import { usePokemonLogic } from "../Hooks/usePokemonLogic";
 import '../styles/infoPokemon.css'
 import { PokemonStats } from "../types/types";
 
-function InfoPokemon({ pokemonInformation }: {pokemonInformation: PokemonStats}){
-    const {openInfo, setOpenInfo} = usePokemonLogic();
-    const handleClick = () => setOpenInfo(!openInfo);
+function InfoPokemon({pokemonInformation, setOpenInfo} : {pokemonInformation: PokemonStats, setOpenInfo: Dispatch<SetStateAction<boolean>>}) {
+    const handleClick = () => {
+        setOpenInfo(false);
+    };
     
     return ReactDOM.createPortal(
         <div className="BackGroundPokemon" onClick={handleClick}>
            <div className="box-content-pokemon-info">
-           <button className="button-close-info" onClick={handleClick}>X</button>
+           <button className="button-close-info" onClick={handleClick}><span>X</span></button>
             <div className="pokemon-modal-container">
                 <PokemonInfo
                     id={pokemonInformation.id}

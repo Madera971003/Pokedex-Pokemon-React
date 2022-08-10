@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PokemonThumb from "../components/PokemonThumb";
 import { SearchPokemon } from "../components/SearchPokemon";
 import { InfoPokemon } from "../Modal/infoPokemon";
@@ -11,9 +11,8 @@ function App() {
     setSearchPokemons,
     searchedPokemons,
     getAllPokemons,
-    openInfo,
-    setOpenInfo,
   } = usePokemonLogic();
+  const [openInfo, setOpenInfo] = useState<boolean>(false);
   const [pokemonInformation, setPokemonInformation] = React.useState<PokemonStats>({
     id: null,
     sprites: {
@@ -40,9 +39,12 @@ function App() {
   });
 
   const handleClick = (pokemonStats: PokemonStats) => {
-    setOpenInfo(true);
+    setOpenInfo(!openInfo);
     setPokemonInformation(pokemonStats);
   };
+
+  // useEffect( () => {}, [openInfo]);
+
   return (
     <React.Fragment>
       <h1 className="title-container">Pokemon Evolution</h1>
@@ -67,7 +69,7 @@ function App() {
         </div>
         <button className="load-more" onClick={() => getAllPokemons()}>Load more</button>
       </div>
-      {openInfo && <InfoPokemon pokemonInformation={pokemonInformation}/>}
+      {openInfo && <InfoPokemon pokemonInformation={pokemonInformation} setOpenInfo={setOpenInfo}/>}
     </React.Fragment>
   );
 }
